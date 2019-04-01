@@ -1,0 +1,7 @@
+.forms {
+	display: flex;
+	flex-flow: row nowrap;
+	flex: 0 0 100%;
+	border: 2px solid black;
+	justify-content: center;
+}

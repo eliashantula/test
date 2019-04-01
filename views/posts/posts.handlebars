@@ -1,0 +1,38 @@
+<h1>Posts</h1>
+
+
+{{#if posts}}
+{{#each posts as |post|}}
+<div class = "post" id={{post.id}}>
+	
+	<h3>{{post.title}}</h3>
+	
+	<p>{{post.content}}</p>
+	<div>
+	<form method="post" action="/reply" id="preply">
+		<input type="hidden" value={{post._id}} name="id">
+		<input type="submit" value="Submit Reply">
+	
+	</form>
+	<textarea form="preply" name="preply"> </textarea>
+</div>
+</div>
+
+<div class="replies">
+	<ul>
+		{{#each post.replies as |reply|}}
+		{{reply.content}}
+    <li>
+    	
+    	
+	<form method="post" action="/reply" id="reply">
+		<input type="hidden" value={{reply._id}} name="id">
+		<input type="submit" value="Submit Reply">
+	</form>
+   <textarea form="reply" name="comment"> </textarea>
+</li>
+ {{/each}}
+   <ul>
+</div>
+{{/each}}
+{{/if}}
