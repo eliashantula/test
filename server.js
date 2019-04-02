@@ -50,7 +50,7 @@ app.post("/reply", (req, res, next) => {
 	});
 });
 app.get("/delete", (req, res, next) => {
-	Post.remove({})
+	Reply.remove({})
 		.exec()
 		.then(response => {
 			console.log(response);
@@ -73,15 +73,16 @@ app.post("/post", (req, res, next) => {
 });
 
 app.post("/commentreply", (req, res, next) => {
-	console.log(req.body);
+	
 	let reply = new Reply({ content: req.body.comments });
+	
 	reply.save().then(reply => {
 		Reply.findByIdAndUpdate(
 			req.body.id,
 			{ $push: { replies: reply._id } },
 			{ new: true }
 		).then(response => {
-			console.log(response)
+			console.log(response,"crap",reply)
 			res.redirect(`/${req.body.postid}`);
 		});
 	});
@@ -95,7 +96,7 @@ app.get("/posts", (req, res, next) => {
 app.get("/:postid", (req, res, next) => {
 	Post.findOne({ _id: req.params.postid }).populate({path: 'replies'}).lean()
 		.then(post=>{
-			console.log(req.body)
+			console.log(post)
 			res.render('welcome/post', {post})
 		})
 });

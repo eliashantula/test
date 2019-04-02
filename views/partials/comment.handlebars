@@ -1,12 +1,14 @@
-<li>
+      <div>
     	<p>{{comment.content}}</p>
-
+      	{{comment}}
 		<form method="post" action="/commentreply" id={{comment._id}}>
 		<input type="hidden" value={{comment._id}} name="id">
+		<input type="hidden" value={{postId}} name="postid">
 		<input type="comments" value="" name="comments">
 		<input type="submit" value="Submit Reply">
 
 	</form>
-	{{#each comment.comments}}
+	{{#each comment.replies}}
 	{{> comment comment=this postId=../postId}}
-</li>
+	{{/each}}
+</div>
