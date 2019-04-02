@@ -1,7 +1,7 @@
 <div class="post">
 	<h1>{{post.title}}</h1>
 	<h3>{{post.content}}</h3>
-	
+	{{comment._id}}
     <form method="post" action="/reply" id={{post._id}}>
 		<input type="hidden" value={{post._id}} name="id">
 		<input type="comments" value="" name="comments">

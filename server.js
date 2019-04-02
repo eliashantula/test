@@ -82,7 +82,7 @@ app.post("/commentreply", (req, res, next) => {
 			{ $push: { replies: reply._id } },
 			{ new: true }
 		).then(response => {
-			console.log(response,"crap",reply)
+		  
 			res.redirect(`/${req.body.postid}`);
 		});
 	});
@@ -95,9 +95,9 @@ app.get("/posts", (req, res, next) => {
 
 app.get("/:postid", (req, res, next) => {
 	Post.findOne({ _id: req.params.postid }).populate({path: 'replies'}).lean()
-		.then(post=>{
+		.then(post=>{ 
 			console.log(post)
-			res.render('welcome/post', {post})
+					res.render('welcome/post', {post})
 		})
 });
 

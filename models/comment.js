@@ -9,6 +9,15 @@ let ReplySchema = new Schema({
 })
 
 
+const autoPopulateCreator = function(next){
+	this.populate({
+		path: 'replies'
+	})
+	next()
+}
+
+ReplySchema.pre('find', autoPopulateCreator )
+.pre('findOne', autoPopulateCreator)
 
 
 let Reply = mongoose.model('Reply', ReplySchema)
