@@ -20,18 +20,11 @@
 
 <div class="replies">
 	<ul>
-		{{#each post.replies as |reply|}}
-		{{reply.content}}
-    <li>
-    	
-    	
-	<form method="post" action="/reply" id="reply">
-		<input type="hidden" value={{reply._id}} name="id">
-		<input type="submit" value="Submit Reply">
-	</form>
-   <textarea form="reply" name="comment"> </textarea>
-</li>
- {{/each}}
+		{{#each post.replies}}
+		{{> comment comment=this postId=../post._id}}
+		{{/each}}
+
+
    <ul>
 </div>
 {{/each}}

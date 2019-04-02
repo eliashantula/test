@@ -1,0 +1,12 @@
+<li>
+    	<p>{{comment.content}}</p>
+
+		<form method="post" action="/commentreply" id={{comment._id}}>
+		<input type="hidden" value={{comment._id}} name="id">
+		<input type="comments" value="" name="comments">
+		<input type="submit" value="Submit Reply">
+
+	</form>
+	{{#each comment.comments}}
+	{{> comment comment=this postId=../postId}}
+</li>

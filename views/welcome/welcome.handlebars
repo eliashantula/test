@@ -1,7 +1,7 @@
 <div class="discuss">
 <div class="forms">
 	<form method="post" id="comments" action= "/post">
-Title: <input type="title" name="title" value="bla">
+Title: <input type="title" name="title" value="">
 <input type="submit" value="Submit">
 
 
@@ -14,38 +14,15 @@ Title: <input type="title" name="title" value="bla">
 
 {{#if posts}}
 {{#each posts as |post|}}
-<div class = "post" id={{post.id}}>
-	
+<div class = "post" id={{post._id}}>
+	<a href='/{{post._id}}'>
 	<h3>{{post.title}}</h3>
+	</a>
 	
-	<p>{{post.content}}yes</p>
-	
-	<form method="post" action="/reply" id={{post._id}}>
-		<input type="hidden" value={{post._id}} name="id">
-		<input type="comments" value="" name="comments">
-		<input type="submit" value="Submit Reply">
-	
-	</form>
 
 </div>
 
-<div class="replies">
-	<ul>
-		{{#each replies as |reply|}}
-		
-    <li>
-    	{{reply.content}}
-    	{{reply.replies}}
-    	
-	<form method="post" action="/reply" id={{reply._id}}>
-		<input type="hidden" value={{reply._id}} name="id">
-		<input type="comments" value="" name="comments">
-		<input type="submit" value="Submit Reply">
-	</form>
-   
-</li>
- {{/each}}
-   <ul>
+
 </div>
 {{/each}}
 {{/if}}
